@@ -61,11 +61,10 @@ public class Easy {
         temp = r.nextInt((100-91))+91;
         System.out.println(temp);
         a.replace(temp,  r.nextInt(10));
-
-
-
-
     }
+    
+
+    
 
     static public void printmaze(HashMap<Integer,Integer> a){
         int n = 0;

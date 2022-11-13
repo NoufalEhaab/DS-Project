@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Player{
     int step;
     int movesrequire =17;
@@ -7,4 +9,7 @@ public class Player{
         this.name = name;
         step = 0;
     }
+    
+
+    
 }
