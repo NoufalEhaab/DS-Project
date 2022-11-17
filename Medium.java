@@ -1,29 +1,29 @@
 import java.util.*;
 public class Medium{
-    static HashMap<Integer,Integer> a;
+    static HashMap<Integer,Integer> maze;
    
      static public void createmaze(HashMap<Integer,Integer> a){
         for (int i = 0; i < 100; i++) {
-            a.put((i+1),(i+1) );
+            maze.put((i+1),(i+1) );
         }
        
         // Random r = new Random();
        
     }
     static public void setMaze(HashMap<Integer,Integer> a){
-        a.put(99,4);
-        a.put(85,55);
-        a.put(89,51);
-        a.put(59,37);
-        a.put(39,3);
-        a.put(47,32);
-        a.put(17,46);
-        a.put(8,30);
-        a.put(42,80);
-        a.put(31,67);
-        a.put(99,4);
-        a.put(57,85);
-        a.put(68,93);
+        maze.put(99,4);
+        maze.put(85,55);
+        maze.put(89,51);
+        maze.put(59,37);
+        maze.put(39,3);
+        maze.put(47,32);
+        maze.put(17,46);
+        maze.put(8,30);
+        maze.put(42,80);
+        maze.put(31,67);
+        maze.put(99,4);
+        maze.put(57,85);
+        maze.put(68,93);
     }
 
     static public void printmaze(HashMap<Integer,Integer> a){
@@ -46,10 +46,13 @@ public class Medium{
         
     }
    
+    public static void movesnake(){
+        
+    }
     public static void main(String[] args) {
-        a = new HashMap<>();
-        createmaze(a);
+        maze = new HashMap<>();
+        createmaze(maze);
         // setMaze(a);
-        printmaze(a);
+        printmaze(maze);
     }
 }

@@ -76,11 +76,35 @@ public class Game {
         }
         else if(choice == 2){
             createmaze();
+            maze.put(99,4);
+            maze.put(85,55);
+            maze.put(89,51);
+            maze.put(59,37);
+            maze.put(39,3);
+            maze.put(47,32);
+            maze.put(17,46);
+            maze.put(8,30);
+            maze.put(42,80);
+            maze.put(31,67);
+            maze.put(99,4);
+            maze.put(57,85);
+            maze.put(68,93);
         }
         else if(choice == 3){
             createmaze();
-
-            // Game g = new Hard();
+            maze.put(99,4);
+            maze.put(85,55);
+            maze.put(89,51);
+            maze.put(59,37);
+            maze.put(39,3);
+            maze.put(47,32);
+            maze.put(17,46);
+            maze.put(8,30);
+            maze.put(42,80);
+            maze.put(31,67);
+            maze.put(99,4);
+            maze.put(57,85);
+            maze.put(68,93);
         }
     }
 public void createmaze(){
@@ -130,7 +154,7 @@ public void createmaze(){
             System.exit(0);
         }
         else{
-        System.out.println(maze.get(obj.step + num));
+        // System.out.println(maze.get(obj.step + num));
         if (maze.get(obj.step + num) != -1) {
             
             obj.step = maze.get(obj.step + num);
@@ -153,6 +177,7 @@ public void createmaze(){
             printmaze(maze);
             g.showposition(g.players);
             for (Player p : g.players) {
+                System.out.println("Player " + p.name + " turn : ");
                 System.out.println("Press r to roll dice!");
                 Scanner sc = new Scanner(System.in);
                 String a = sc.next();
