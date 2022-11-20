@@ -105,6 +105,11 @@ public class Game {
             maze.put(99,4);
             maze.put(57,85);
             maze.put(68,93);
+            maze.put(95,-2);
+            maze.put(81,-2);            
+            maze.put(96,-2);            
+            maze.put(83,-2);            
+
         }
     }
 public void createmaze(){
@@ -155,9 +160,13 @@ public void createmaze(){
         }
         else{
         // System.out.println(maze.get(obj.step + num));
-        if (maze.get(obj.step + num) != -1) {
+        if (maze.get(obj.step + num) != -1 && maze.get(obj.step + num) != -2) {
             
             obj.step = maze.get(obj.step + num);
+        }
+        else if (maze.get(obj.step + num) == -2) {
+            System.out.println("HAHAHA!You landed on bomb!");
+            obj.step = 0;
         }
         else{
             obj.step += num;
