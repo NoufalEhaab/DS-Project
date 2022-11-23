@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Game {
     ArrayList<Player> players = new ArrayList<>();
     static HashMap<Integer, Integer> maze;
-
+    static int choice = 0;
     public Game() {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the number of players : ");
@@ -17,7 +17,7 @@ public class Game {
             players.add(a);
         }
         System.out.println("Select Difficulty :\n1.Easy\n2.Medium\n3.Hard");
-        int choice = input.nextInt();
+        choice = input.nextInt();
         if (choice == 1) {
             maze = new HashMap<>();
             createmaze();
@@ -74,7 +74,6 @@ public class Game {
 
         } else if (choice == 2) {
             createmaze();
-            // maze.put(99, 4);
             maze.put(85, 55);
             // maze.put(89, 51);
             maze.put(59, 37);
@@ -84,7 +83,7 @@ public class Game {
             maze.put(8, 30);
             maze.put(42, 80);
             maze.put(31, 67);
-            maze.put(99, 4);
+            // maze.put(99, 4);
             maze.put(57, 85);
             maze.put(68, 93);
         } else if (choice == 3) {
@@ -99,7 +98,6 @@ public class Game {
             maze.put(8, 30);
             maze.put(42, 80);
             maze.put(31, 67);
-            maze.put(99, 4);
             maze.put(57, 85);
             maze.put(68, 93);
             maze.put(95, -2);
@@ -162,10 +160,43 @@ public class Game {
             if (maze.get(obj.step + num) != -1 && maze.get(obj.step + num) != -2) {
 
                 obj.step = maze.get(obj.step + num);
+                // movesnake(obj);
+
+            } else if (maze.get(obj.step + num) == -2) {
+                System.out.println("HAHAHA!You landed on bomb!");
+                obj.step = 0;
+            } else {
+                obj.step += num;
+                // movesnake(obj);
+
+            }
+            // movesnake(obj);
+
+        }
+    }
+    public void step_assign2(Player obj, int num) {
+
+        if (obj.step == 0) {
+            if (num == 6) {
+                obj.step = 1;
+            }
+        } else if (obj.step + num > 100) {
+            System.out.println("Can't make the move!");
+            return;
+        } else if (obj.step + num == 100) {
+            System.out.println("Player : " + obj.name + " won the game!!!");
+            System.exit(0);
+        } else {
+            // System.out.println(maze.get(obj.step + num));
+            if (maze.get(obj.step + num) != -1 && maze.get(obj.step + num) != -2) {
+
+                obj.step = maze.get(obj.step + num);
                 movesnake(obj);
 
             } else if (maze.get(obj.step + num) == -2) {
                 System.out.println("HAHAHA!You landed on bomb!");
+                maze.put(obj.step+num,-1);
+
                 obj.step = 0;
             } else {
                 obj.step += num;
@@ -229,11 +260,17 @@ public class Game {
         }
 
     }
+    public void findprobabilty(ArrayList <Player> players){
+        for (Player player : players) {
+        player.movesrequire = ((100-player.step)/6) + 1;
+        System.out.println("Minimum number of steps in which Player "+player.name + " can finish game = " + player.movesrequire );
+        }
+    }
 
     public static void main(String[] args) {
         Game g = new Game();
         printmaze(maze);
-
+        System.out.println();
         while (0 == 0) {
             printmaze(maze);
             g.showposition(g.players);
@@ -245,7 +282,13 @@ public class Game {
                 if (a.equals("r")) {
                     int num = g.rolldice();
                     System.out.println("Number = " + num);
+                    if (choice == 1) {
                     g.step_assign(p, num);
+                    }
+                    else{
+                    g.step_assign2(p, num);
+                    }
+                    g.findprobabilty(g.players);
                 }
 
             }
