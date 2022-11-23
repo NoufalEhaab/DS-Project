@@ -74,12 +74,11 @@ public class Game {
 
         } else if (choice == 2) {
             createmaze();
-            maze.put(99, 4);
+            // maze.put(99, 4);
             maze.put(85, 55);
-            maze.put(89, 51);
+            // maze.put(89, 51);
             maze.put(59, 37);
-            maze.put(39, 3);.
-            
+            maze.put(39, 3);
             maze.put(47, 32);
             maze.put(17, 46);
             maze.put(8, 30);
@@ -90,9 +89,9 @@ public class Game {
             maze.put(68, 93);
         } else if (choice == 3) {
             createmaze();
-            maze.put(99, 4);
+            // maze.put(99, 4);
             maze.put(85, 55);
-            maze.put(89, 51);
+            // maze.put(89, 51);
             maze.put(59, 37);
             maze.put(39, 3);
             maze.put(47, 32);
@@ -189,7 +188,7 @@ public class Game {
         int x = p.step % 10;
 
         if (x != 0) {
-            int snake = 0;
+            int snake = p.step;
             for (int i = (n * 10) + 1; i < ((n + 1) * 10) + 1; i++) {
                 if (maze.get(i) < i && maze.get(i) > 0) {
                     snake = i;
@@ -205,7 +204,7 @@ public class Game {
                 checkstep(p);
             }
         } else if (x == 0) {
-            int snake = 0;
+            int snake = p.step;
             for (int i = ((n - 1) * 10) + 1; i < (n * 10) + 1; i++) {
                 if (maze.get(i) < i && maze.get(i) > 0) {
                     snake = i;
@@ -225,7 +224,7 @@ public class Game {
     }
 
     public void checkstep(Player p) {
-        if (maze.get(p.step) > 0) {
+        if (maze.get(p.step) > 0 ) {
             p.step = maze.get(p.step);
         }
 
