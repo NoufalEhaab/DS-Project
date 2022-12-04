@@ -9,32 +9,28 @@ public class Game {
     static HashMap<Integer, Integer> maze;
     static int choice = 0;
     public Game() {
-        Scanner input = new Scanner(System.in);
-        System.out.println(Color.RED);
-        System.out.print("Enter the number of players : ");
-        System.out.print(Color.RESET);
-        try{
-            int NoOfplayer = input.nextInt();
-        for (int i = 0; i < NoOfplayer; i++) {
-            System.out.print(Color.CYAN);
-            System.out.print("Enter the name of  Player#" + (i + 1) + " : ");
-            System.out.print(Color.RESET);
-            Player a = new Player(input.next());
-            players.add(a);
+        detailsofplayer();
+        selectdifficulty();
+        
+    }
+  
+    public void createmaze() {
+        maze = new HashMap<>();
+
+        for (int i = 0; i < 100; i++) {
+            maze.put((i + 1), -1);
         }
+    }
+    public void selectdifficulty(){
+        try {
+        Scanner input = new Scanner(System.in);
         System.out.println(Color.RED_UNDERLINED);
         System.out.println("Select Difficulty :");
         System.out.print(Color.RESET);
         System.out.println(Color.CYAN);
         System.out.println("1.Easy\n2.Medium\n3.Hard");
         System.out.println(Color.RESET);
-        choice = input.nextInt();
-    }
-    catch(InputMismatchException ex){
-        System.out.println("Invalid Input,Run program again!");
-        System.exit(0);
-    }
-   
+        choice = input.nextInt();   
         if (choice == 1) {
             maze = new HashMap<>();
             createmaze();
@@ -124,19 +120,35 @@ public class Game {
 
         }
         else{
-            System.out.println("Invalid choice entered,Run program again");
-            System.exit(0);
+            System.out.println("Invalid choice entered,Try again");
+            selectdifficulty();
+        }  
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input,Try again");
+            selectdifficulty();
+        }       
+    
+    }
+    public void detailsofplayer(){
+        try {
+            Scanner input = new Scanner(System.in);
+            System.out.println(Color.RED);
+            System.out.print("Enter the number of players : ");
+            System.out.print(Color.RESET);
+            int NoOfplayer = input.nextInt();
+            for (int i = 0; i < NoOfplayer; i++) {
+                System.out.print(Color.CYAN);
+                System.out.print("Enter the name of  Player#" + (i + 1) + " : ");
+                System.out.print(Color.RESET);
+                Player a = new Player(input.next());
+                players.add(a);
+            }
+    
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid Input,Try again");
+            detailsofplayer();
         }
     }
-
-    public void createmaze() {
-        maze = new HashMap<>();
-
-        for (int i = 0; i < 100; i++) {
-            maze.put((i + 1), -1);
-        }
-    }
-
     static public void printmaze(HashMap<Integer, Integer> a) {
         int n = 0;
         int x = 100;
