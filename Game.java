@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,7 +13,8 @@ public class Game {
         System.out.println(Color.RED);
         System.out.print("Enter the number of players : ");
         System.out.print(Color.RESET);
-        int NoOfplayer = input.nextInt();
+        try{
+            int NoOfplayer = input.nextInt();
         for (int i = 0; i < NoOfplayer; i++) {
             System.out.print(Color.CYAN);
             System.out.print("Enter the name of  Player#" + (i + 1) + " : ");
@@ -27,6 +29,12 @@ public class Game {
         System.out.println("1.Easy\n2.Medium\n3.Hard");
         System.out.println(Color.RESET);
         choice = input.nextInt();
+    }
+    catch(InputMismatchException ex){
+        System.out.println("Invalid Input,Run program again!");
+        System.exit(0);
+    }
+   
         if (choice == 1) {
             maze = new HashMap<>();
             createmaze();
@@ -115,6 +123,10 @@ public class Game {
             maze.put(83, -2);
 
         }
+        else{
+            System.out.println("Invalid choice entered,Run program again");
+            System.exit(0);
+        }
     }
 
     public void createmaze() {
@@ -136,16 +148,46 @@ public class Game {
                     System.out.print((i) + " ");
                     System.out.print(Color.RESET);
                 }else{
-                    System.out.print(a.get(i) + " ");
+                    if(a.get(i) == -2){
+                        System.out.print(Color.WHITE_BOLD_BRIGHT);
+                        System.out.print((i) + " ");
+                        System.out.print(Color.RESET);
+                    }
+                    else if (a.get(i) > i) {
+                        System.out.print(Color.BLUE_BOLD_BRIGHT);
+                        System.out.print(a.get(i) + " ");
+                        System.out.print(Color.RESET);
+                    }
+                    else{
+                        System.out.print(Color.RED_BOLD_BRIGHT);
+                        System.out.print(a.get(i) + " ");
+                        System.out.print(Color.RESET);
+                    }
                 }
             }
             x = x - 19;
             System.out.println();
             for (int i = x; i < x + 10; i++) {
                 if (a.get(i) == -1) {
+                    System.out.print(Color.GREEN_BOLD_BRIGHT);
                     System.out.print((i) + " ");
+                    System.out.print(Color.RESET);
                 }else{
-                    System.out.print(a.get(i) + " ");
+                    if(a.get(i) == -2){
+                        System.out.print(Color.WHITE_BOLD_BRIGHT);
+                        System.out.print((i) + " ");
+                        System.out.print(Color.RESET);
+                    }
+                    else if (a.get(i) > i) {
+                        System.out.print(Color.BLUE_BOLD_BRIGHT);
+                        System.out.print(a.get(i) + " ");
+                        System.out.print(Color.RESET);
+                    }
+                    else{
+                        System.out.print(Color.RED_BOLD_BRIGHT);
+                        System.out.print(a.get(i) + " ");
+                        System.out.print(Color.RESET);
+                    }
                 }
             }
             System.out.println();
@@ -168,10 +210,15 @@ public class Game {
                 obj.step = 1;
             }
         } else if (obj.step + num > 100) {
+            System.out.print(Color.RED_BOLD_BRIGHT);
             System.out.println("Can't make the move!");
+            System.out.print(Color.RESET);
             return;
         } else if (obj.step + num == 100) {
+            System.out.print(Color.GREEN_BRIGHT);
+            System.out.print(Color.WHITE_BACKGROUND);
             System.out.println("Player : " + obj.name + " won the game!!!");
+            System.out.print(Color.RESET);
             System.exit(0);
         } else {
             // System.out.println(maze.get(obj.step + num));
@@ -181,7 +228,9 @@ public class Game {
                 // movesnake(obj);
 
             } else if (maze.get(obj.step + num) == -2) {
+                System.out.print(Color.RED);
                 System.out.println("HAHAHA!You landed on bomb!");
+                System.out.print(Color.RESET);
                 obj.step = 0;
             } else {
                 obj.step += num;
@@ -283,7 +332,9 @@ public class Game {
     public void findprobabilty(ArrayList <Player> players){
         for (Player player : players) {
         player.movesrequire = ((100-player.step)/6) + 1;
+        System.out.print(Color.MAGENTA);
         System.out.println("Minimum number of steps in which Player "+player.name + " can finish game = " + player.movesrequire );
+        System.out.print(Color.RESET);
         }
     }
     enum Color {
@@ -397,6 +448,12 @@ public class Game {
                 System.out.print(Color.RESET);
                 Scanner sc = new Scanner(System.in);
                 String a = sc.next();
+                while(!a.equals("r")){
+                    System.out.print(Color.BLUE_BOLD);
+                    System.out.println("Press r to roll dice!");
+                    System.out.print(Color.RESET);
+                    a = sc.next();
+                }
                 if (a.equals("r")) {
                     int num = g.rolldice();
                     System.out.print(Color.RED_BOLD_BRIGHT);
