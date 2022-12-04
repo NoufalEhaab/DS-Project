@@ -55,15 +55,15 @@ public class HashMap<T,U> {
         }
 
     }
-    public static void main(String[] args) {
-        HashMap<Integer,Integer> maze =new HashMap<>();
-        maze.createmaze();
-        maze.printmaze(maze);
-        maze.replace(5, 21);
-        maze.printmaze(maze);
-        // maze.put(101, 0);
-        // maze.get(102);
+//     public static void main(String[] args) {
+//         HashMap<Integer,Integer> maze =new HashMap<>();
+//         maze.createmaze();
+//         maze.printmaze(maze);
+//         maze.replace(5, 21);
+//         maze.printmaze(maze);
+//         // maze.put(101, 0);
+//         // maze.get(102);
       
        
-    }
+//     }
 }
